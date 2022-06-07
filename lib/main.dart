@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/resource.dart';
 import 'package:plant_app/screens/screen_2.dart';
+import 'package:plant_app/plant_details.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +28,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Center(child: Image.asset(R.ASSETS_IMAGES_PLANT_1_PNG)),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 100),
+        child: Center(child: PlantDetails()),
+      ),
     );
   }
 }
