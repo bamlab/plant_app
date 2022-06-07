@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/resource.dart';
+import 'package:plant_app/screens/screen_3.dart';
 
 class Screen2 extends StatelessWidget {
   const Screen2({Key? key}) : super(key: key);
@@ -13,7 +14,14 @@ class Screen2 extends StatelessWidget {
           R.ASSETS_IMAGES_BACKGROUND_PNG,
           fit: BoxFit.cover,
         ),
-        const Flower(),
+        GestureDetector(
+          onTap: () => Navigator.of(context).push(
+            PageRouteBuilder(
+                transitionDuration: const Duration(seconds: 4),
+                pageBuilder: (_, __, ___) => const Screen3()),
+          ),
+          child: const Flower(),
+        ),
       ]),
     );
   }
@@ -40,12 +48,12 @@ class Flower extends StatelessWidget {
                   ),
                 ),
                 padding: const EdgeInsets.all(5.0),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: const SizedBox(
-                    height: 200,
+                child: const Hero(
+                  tag: 'flower',
+                  child: AnimatedPlant(
+                    radius: 100,
+                    heigth: 200,
                     width: 200,
-                    child: PlantImage(),
                   ),
                 ),
               ),
@@ -83,6 +91,30 @@ class PlantImage extends StatelessWidget {
     return Image.asset(
       R.ASSETS_IMAGES_PLANT_9_PNG,
       fit: BoxFit.cover,
+    );
+  }
+}
+
+class AnimatedPlant extends StatelessWidget {
+  const AnimatedPlant({
+    Key? key,
+    this.heigth,
+    this.width,
+    this.radius = 0,
+  }) : super(key: key);
+  final double? heigth;
+  final double? width;
+  final double radius;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: heigth,
+      width: width,
+      clipBehavior: Clip.hardEdge,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+      ),
+      child: const PlantImage(),
     );
   }
 }
