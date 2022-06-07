@@ -26,9 +26,9 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const PlantDetailSPage(),
+    return const Scaffold(
+      // appBar: AppBar(),
+      body: PlantDetailSPage(),
     );
   }
 }
@@ -41,7 +41,19 @@ class PlantDetailSPage extends StatefulWidget {
 }
 
 class _PlantDetailSPageState extends State<PlantDetailSPage> {
-  late double alignment = 1;
+  late double turns = 0.02;
+  late Alignment alignment = const Alignment(0, 1);
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      setState(() {
+        turns = 0;
+        alignment = const Alignment(0, 1);
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,23 +63,31 @@ class _PlantDetailSPageState extends State<PlantDetailSPage> {
           top: 0,
           left: 0,
           right: 0,
-          // bottom: MediaQuery.of(context).size.height * 0.5,
-          child: FittedBox(
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height * 0.5,
             child: Image.asset(
               R.ASSETS_IMAGES_PLANT_PNG,
               fit: BoxFit.fill,
             ),
           ),
         ),
-        Align(
-          alignment: Alignment(0, alignment),
-          child: const PlantDetails(
-            plantName: 'Strelitzia Nicolai',
-            data:
-                '''Strelitzia, commonly known as the bird of paradise, is the undisputed queen of the houseplant world. One look at its blooms and you'll find out where it got its name; the flowers look incredibly like the head of an exotic bird.''',
+        AnimatedAlign(
+          duration: kAnimationDuration,
+          alignment: alignment,
+          child: AnimatedRotation(
+            alignment: Alignment.bottomCenter,
+            duration: kAnimationDuration,
+            turns: turns,
+            child: const PlantDetails(
+              plantName: 'Strelitzia Nicolai',
+              data:
+                  '''Strelitzia, commonly known as the bird of paradise, is the undisputed queen of the houseplant world. One look at its blooms and you'll find out where it got its name; the flowers look incredibly like the head of an exotic bird.''',
+            ),
           ),
         ),
       ],
     );
   }
 }
+
+const kAnimationDuration = Duration(seconds: 1);
