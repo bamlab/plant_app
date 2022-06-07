@@ -33,4 +33,6 @@ class R {
   static const String BLOB_LEFT = 'assets/images/blob_left.png';
 
   static const String BLOB_RIGHT = 'assets/images/blob_right.png';
+
+  static const String PLANT = 'assets/images/plant.png';
 }
