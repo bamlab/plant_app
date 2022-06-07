@@ -27,4 +27,11 @@ class R {
 
   /// ![preview](file://./../../assets/images/plant_8.png)
   static const String ASSETS_IMAGES_PLANT_8_PNG = 'assets/images/plant_8.png';
+
+  /// ![preview](file://./../../assets/images/plant_9.png)
+  static const String ASSETS_IMAGES_PLANT_9_PNG = 'assets/images/plant_9.png';
+
+  /// ![preview](file://./../../assets/images/background.png)
+  static const String ASSETS_IMAGES_BACKGROUND_PNG =
+      'assets/images/background.png';
 }
