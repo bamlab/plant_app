@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/resource.dart';
+import 'package:plant_app/plant_details.dart';
 import 'package:plant_app/screens/screen_2.dart';
 
 class Screen3 extends StatelessWidget {
@@ -14,19 +15,19 @@ class Screen3 extends StatelessWidget {
           R.ASSETS_IMAGES_BACKGROUND_PNG,
           fit: BoxFit.cover,
         ),
-        Column(
-          children: [
-            GestureDetector(
-              onTap: () => Navigator.maybePop(context),
-              child: Hero(
-                tag: 'flower',
-                child: AnimatedPlant(
-                  heigth: mediaQuery.size.height / 2,
-                ),
-              ),
-            )
-          ],
-        )
+        GestureDetector(
+          onTap: () => Navigator.maybePop(context),
+          child: Hero(
+            tag: 'flower',
+            child: AnimatedPlant(
+              heigth: mediaQuery.size.height / 2,
+            ),
+          ),
+        ),
+        Positioned.fill(
+          top: mediaQuery.size.height / 2 - 100,
+          child: const MovingCard(),
+        ),
       ]),
     );
   }
@@ -66,14 +67,81 @@ class _AnimatedPlantState extends State<AnimatedPlant> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(seconds: 4),
+      duration: const Duration(seconds: 3),
       // height: heigth,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: borderRadius,
       ),
-      curve: Curves.bounceInOut,
+      curve: Curves.easeIn,
       child: const PlantImage(),
+    );
+  }
+}
+
+class MovingCard extends StatefulWidget {
+  const MovingCard({Key? key}) : super(key: key);
+
+  @override
+  State<MovingCard> createState() => _MovingCardState();
+}
+
+class _MovingCardState extends State<MovingCard>
+    with SingleTickerProviderStateMixin {
+  double turns = 0.04;
+  // Animation<Offset> offsetAnimation=
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 3),
+    vsync: this,
+  );
+
+  late final Animation<Offset> _offsetAnimation = Tween<Offset>(
+    begin: const Offset(0.5, 1),
+    end: const Offset(0.0, 0.0),
+  ).animate(CurvedAnimation(
+    parent: _controller,
+    curve: Curves.easeIn,
+  ));
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    () async {
+      await Future.delayed(const Duration(milliseconds: 16));
+      _controller.forward();
+      setState(() {
+        turns = 0.0;
+      });
+    }();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SlideTransition(
+      position: _offsetAnimation,
+      child: AnimatedRotation(
+        turns: turns,
+        duration: const Duration(seconds: 2),
+        child: Container(
+          clipBehavior: Clip.hardEdge,
+          decoration: const BoxDecoration(
+            color: Color(0xFFF6F5F0),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(50),
+            ),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.only(top: 32.0),
+            child: PlantDetails(),
+          ),
+        ),
+      ),
     );
   }
 }
