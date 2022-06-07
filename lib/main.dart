@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_app/const/resource.dart';
+import 'package:plant_app/home.dart';
 import 'package:plant_app/plant_details.dart';
 
 void main() {
@@ -12,17 +13,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Plant App',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const HomePage(),
+      home: Builder(builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                PageRouteBuilder(
+                    transitionDuration: Duration(milliseconds: 500),
+                    pageBuilder: ((context, animation, secondaryAnimation) =>
+                        FadeTransition(
+                            opacity: animation, child: HomePageLouis()))));
+          },
+          child: const HomePage(),
+        );
+      }),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePageLouis extends StatelessWidget {
+  const HomePageLouis({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +57,7 @@ class PlantDetailSPage extends StatefulWidget {
 
 class _PlantDetailSPageState extends State<PlantDetailSPage> {
   late double turns = 0.02;
-  late Alignment alignment = const Alignment(0, 1);
+  late Alignment alignment = const Alignment(2, 3);
 
   @override
   void initState() {
@@ -65,9 +80,12 @@ class _PlantDetailSPageState extends State<PlantDetailSPage> {
           right: 0,
           child: SizedBox(
             height: MediaQuery.of(context).size.height * 0.5,
-            child: Image.asset(
-              R.ASSETS_IMAGES_PLANT_PNG,
-              fit: BoxFit.fill,
+            child: Hero(
+              tag: 'plant-2',
+              child: Image.asset(
+                R.ASSETS_IMAGES_PLANT_PNG,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
         ),
@@ -90,4 +108,4 @@ class _PlantDetailSPageState extends State<PlantDetailSPage> {
   }
 }
 
-const kAnimationDuration = Duration(seconds: 1);
+const kAnimationDuration = Duration(milliseconds: 500);

@@ -52,12 +52,15 @@ class HomePage extends StatelessWidget {
             AnimatedAlign(
               duration: animationDuration,
               alignment: Alignment(-0.8, -0.1),
-              child: IconedBubble(
-                assetName: R.PLANT,
-                size: 170,
-                icon: Icon(Icons.home_outlined),
-                color: Color(0xFF53ADFF),
-                isExpanded: false,
+              child: Hero(
+                tag: 'plant-2',
+                child: IconedBubble(
+                  assetName: R.PLANT,
+                  size: 170,
+                  icon: Icon(Icons.home_outlined),
+                  color: Color(0xFF53ADFF),
+                  isExpanded: false,
+                ),
               ),
             ),
             AnimatedAlign(
