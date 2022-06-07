@@ -27,4 +27,10 @@ class R {
 
   /// ![preview](file://./../../assets/images/plant_8.png)
   static const String ASSETS_IMAGES_PLANT_8_PNG = 'assets/images/plant_8.png';
+
+  static const String BLOB_TOP = 'assets/images/blob_top.png';
+
+  static const String BLOB_LEFT = 'assets/images/blob_left.png';
+
+  static const String BLOB_RIGHT = 'assets/images/blob_right.png';
 }
