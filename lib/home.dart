@@ -20,42 +20,105 @@ class HomePage extends StatelessWidget {
             BlobTop(),
             BlobLeft(),
             BlobRight(),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(-0.8, -0.9),
               child: TasksWidget(),
             ),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(0.45, -0.9),
               child: IconlessBubble(
                 assetName: R.ASSETS_IMAGES_PLANT_1_PNG,
                 size: 82,
               ),
             ),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(1.05, -0.7),
               child: IconlessBubble(
                 assetName: R.ASSETS_IMAGES_PLANT_5_PNG,
                 size: 73,
               ),
             ),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(0.7, -0.4),
               child: IconlessBubble(
                 assetName: R.ASSETS_IMAGES_PLANT_4_PNG,
                 size: 111,
               ),
             ),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(-0.8, -0.1),
               child: IconedBubble(
-                assetName: R.ASSETS_IMAGES_PLANT_6_PNG,
+                assetName: R.PLANT,
                 size: 170,
                 icon: Icon(Icons.home_outlined),
                 color: Color(0xFF53ADFF),
                 isExpanded: false,
               ),
             ),
-            Align(
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(0.8, 0.1),
+              child: IconedBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_6_PNG,
+                size: 170,
+                icon: Icon(Icons.access_alarm_outlined),
+                color: Color(0xFFFFB900),
+                isExpanded: false,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(-0.3, 0.3),
+              child: IconlessBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_8_PNG,
+                size: 73,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(0.35, 0.65),
+              child: IconedBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_7_PNG,
+                size: 170,
+                icon: Icon(Icons.add_circle_outline),
+                color: Color(0xFFD98A65),
+                isExpanded: false,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(-0.8, 0.6),
+              child: IconlessBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_1_PNG,
+                size: 73,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(-0.6, 1.05),
+              child: IconedBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_7_PNG,
+                size: 170,
+                icon: Icon(Icons.add_circle_outline),
+                color: Color(0xFF4CA874),
+                isExpanded: false,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
+              alignment: Alignment(1.3, 0.85),
+              child: IconlessBubble(
+                assetName: R.ASSETS_IMAGES_PLANT_5_PNG,
+                size: 125,
+              ),
+            ),
+            AnimatedAlign(
+              duration: animationDuration,
               alignment: Alignment(0, 1),
               child: BottomSheet(),
             ),

@@ -34,5 +34,5 @@ class R {
 
   static const String BLOB_RIGHT = 'assets/images/blob_right.png';
 
-  static const String PLANT = 'assets/images/plant.png';
+  static const String PLANT = 'assets/images/Plant.png';
 }
