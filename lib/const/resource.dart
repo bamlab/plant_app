@@ -35,4 +35,7 @@ class R {
   static const String BLOB_RIGHT = 'assets/images/blob_right.png';
 
   static const String PLANT = 'assets/images/Plant.png';
+
+  /// ![preview](file://./../../assets/images/plant_5.png)
+  static const String ASSETS_IMAGES_PLANT_PNG = 'assets/images/Plant.png';
 }
